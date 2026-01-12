@@ -1,0 +1,560 @@
+{
+  "projectName": "LearnNowLogicExtractionPro",
+  "extractedAt": "2026-01-09T20:08:02.289Z",
+  "projectSecurity": {
+    "securityLevel": "CheckEverything",
+    "userRoles": [
+      {
+        "name": "Administrator",
+        "description": ""
+      },
+      {
+        "name": "Teacher",
+        "description": ""
+      },
+      {
+        "name": "Trainee",
+        "description": ""
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "MyFirstModule",
+      "domainModel": {
+        "entities": [
+          {
+            "name": "Course",
+            "generalization": "MyFirstModule.Course",
+            "attributes": [
+              {
+                "name": "Title",
+                "type": "String"
+              },
+              {
+                "name": "Description",
+                "type": "String"
+              },
+              {
+                "name": "Price",
+                "type": "Decimal"
+              },
+              {
+                "name": "Duration",
+                "type": "Integer"
+              }
+            ],
+            "validationRules": [
+              {
+                "attribute": "Title",
+                "type": "RequiredRuleInfo",
+                "message": "Title is required."
+              },
+              {
+                "attribute": "Title",
+                "type": "UniqueRuleInfo",
+                "message": "Title must be unique"
+              },
+              {
+                "attribute": "Duration",
+                "type": "RequiredRuleInfo",
+                "message": "This field is required"
+              },
+              {
+                "attribute": "Duration",
+                "type": "RangeRuleInfo",
+                "message": "Duration must be between 1 and 10"
+              },
+              {
+                "attribute": "Price",
+                "type": "RequiredRuleInfo",
+                "message": "This field is required"
+              },
+              {
+                "attribute": "Price",
+                "type": "RangeRuleInfo",
+                "message": "No message specified"
+              },
+              {
+                "attribute": "Description",
+                "type": "RequiredRuleInfo",
+                "message": "This field is required"
+              }
+            ],
+            "eventHandlers": []
+          },
+          {
+            "name": "Location",
+            "generalization": "MyFirstModule.Location",
+            "attributes": [
+              {
+                "name": "Name",
+                "type": "String"
+              },
+              {
+                "name": "Address",
+                "type": "String"
+              }
+            ],
+            "validationRules": [
+              {
+                "attribute": "Name",
+                "type": "RequiredRuleInfo",
+                "message": "Required"
+              },
+              {
+                "attribute": "Address",
+                "type": "RequiredRuleInfo",
+                "message": "Required"
+              }
+            ],
+            "eventHandlers": []
+          },
+          {
+            "name": "Teacher",
+            "generalization": "MyFirstModule.Teacher",
+            "attributes": [
+              {
+                "name": "Name",
+                "type": "String"
+              },
+              {
+                "name": "Address",
+                "type": "String"
+              }
+            ],
+            "validationRules": [
+              {
+                "attribute": "Name",
+                "type": "RequiredRuleInfo",
+                "message": "Required"
+              },
+              {
+                "attribute": "Address",
+                "type": "RequiredRuleInfo",
+                "message": "Required"
+              }
+            ],
+            "eventHandlers": []
+          },
+          {
+            "name": "Trainee",
+            "generalization": "MyFirstModule.Trainee",
+            "attributes": [
+              {
+                "name": "Name",
+                "type": "String"
+              },
+              {
+                "name": "Address",
+                "type": "String"
+              },
+              {
+                "name": "EmailAddress",
+                "type": "String"
+              }
+            ],
+            "validationRules": [
+              {
+                "attribute": "Name",
+                "type": "RequiredRuleInfo",
+                "message": "Required"
+              },
+              {
+                "attribute": "Address",
+                "type": "RequiredRuleInfo",
+                "message": "Required"
+              },
+              {
+                "attribute": "EmailAddress",
+                "type": "RequiredRuleInfo",
+                "message": "Required"
+              }
+            ],
+            "eventHandlers": []
+          },
+          {
+            "name": "TrainingEvent",
+            "generalization": "MyFirstModule.TrainingEvent",
+            "attributes": [
+              {
+                "name": "StartDate",
+                "type": "DateTime"
+              },
+              {
+                "name": "EndDate",
+                "type": "DateTime"
+              },
+              {
+                "name": "TotalNumberOfRegistrations",
+                "type": "Integer"
+              }
+            ],
+            "validationRules": [],
+            "eventHandlers": []
+          },
+          {
+            "name": "Registration",
+            "generalization": "MyFirstModule.Registration",
+            "attributes": [
+              {
+                "name": "Number",
+                "type": "AutoNumber"
+              },
+              {
+                "name": "Date",
+                "type": "DateTime"
+              },
+              {
+                "name": "Attend",
+                "type": "Boolean"
+              }
+            ],
+            "validationRules": [],
+            "eventHandlers": [
+              {
+                "event": "Type",
+                "microflow": "MyFirstModule.ADE_Registration_CalculateTotalNumberOfRegistrations"
+              }
+            ]
+          }
+        ],
+        "associations": [
+          {
+            "name": "TrainingEvent_Course",
+            "parent": "TrainingEvent",
+            "child": "Course",
+            "type": "Type",
+            "owner": "Default",
+            "parentDeleteBehavior": "DeleteMeButKeepReferences",
+            "childDeleteBehavior": "DeleteMeButKeepReferences"
+          },
+          {
+            "name": "TrainingEvent_Location",
+            "parent": "TrainingEvent",
+            "child": "Location",
+            "type": "Type",
+            "owner": "Default",
+            "parentDeleteBehavior": "DeleteMeButKeepReferences",
+            "childDeleteBehavior": "DeleteMeButKeepReferences"
+          },
+          {
+            "name": "TrainingEvent_Teacher",
+            "parent": "TrainingEvent",
+            "child": "Teacher",
+            "type": "Type",
+            "owner": "Default",
+            "parentDeleteBehavior": "DeleteMeButKeepReferences",
+            "childDeleteBehavior": "DeleteMeButKeepReferences"
+          },
+          {
+            "name": "Registration_TrainingEvent",
+            "parent": "Registration",
+            "child": "TrainingEvent",
+            "type": "Type",
+            "owner": "Default",
+            "parentDeleteBehavior": "DeleteMeButKeepReferences",
+            "childDeleteBehavior": "DeleteMeIfNoReferences"
+          },
+          {
+            "name": "Registration_Trainee",
+            "parent": "Registration",
+            "child": "Trainee",
+            "type": "Type",
+            "owner": "Default",
+            "parentDeleteBehavior": "DeleteMeButKeepReferences",
+            "childDeleteBehavior": "DeleteMeAndReferences"
+          }
+        ]
+      },
+      "microflows": [
+        {
+          "name": "MyFirstLogic",
+          "returnType": "[object Object]",
+          "activities": [
+            {
+              "type": "StartEvent"
+            },
+            {
+              "type": "EndEvent"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "NanoflowCommons",
+      "domainModel": {
+        "entities": [
+          {
+            "name": "Geolocation",
+            "generalization": "NanoflowCommons.Geolocation",
+            "attributes": [
+              {
+                "name": "Timestamp",
+                "type": "DateTime"
+              },
+              {
+                "name": "Latitude",
+                "type": "String"
+              },
+              {
+                "name": "Longitude",
+                "type": "String"
+              },
+              {
+                "name": "Altitude",
+                "type": "String"
+              },
+              {
+                "name": "Accuracy",
+                "type": "String"
+              },
+              {
+                "name": "AltitudeAccuracy",
+                "type": "String"
+              },
+              {
+                "name": "Heading",
+                "type": "String"
+              },
+              {
+                "name": "Speed",
+                "type": "String"
+              }
+            ],
+            "validationRules": [],
+            "eventHandlers": []
+          },
+          {
+            "name": "Position",
+            "generalization": "NanoflowCommons.Position",
+            "attributes": [
+              {
+                "name": "Latitude",
+                "type": "String"
+              },
+              {
+                "name": "Longitude",
+                "type": "String"
+              }
+            ],
+            "validationRules": [],
+            "eventHandlers": []
+          }
+        ],
+        "associations": []
+      },
+      "microflows": []
+    },
+    {
+      "name": "Administration",
+      "domainModel": {
+        "entities": [
+          {
+            "name": "Account",
+            "generalization": "Administration.Account",
+            "attributes": [
+              {
+                "name": "FullName",
+                "type": "String"
+              },
+              {
+                "name": "Email",
+                "type": "String"
+              },
+              {
+                "name": "IsLocalUser",
+                "type": "Boolean"
+              }
+            ],
+            "validationRules": [],
+            "eventHandlers": []
+          },
+          {
+            "name": "AccountPasswordData",
+            "generalization": "Administration.AccountPasswordData",
+            "attributes": [
+              {
+                "name": "OldPassword",
+                "type": "String"
+              },
+              {
+                "name": "NewPassword",
+                "type": "String"
+              },
+              {
+                "name": "ConfirmPassword",
+                "type": "String"
+              }
+            ],
+            "validationRules": [],
+            "eventHandlers": []
+          }
+        ],
+        "associations": [
+          {
+            "name": "AccountPasswordData_Account",
+            "parent": "AccountPasswordData",
+            "child": "Account",
+            "type": "Type",
+            "owner": "Default",
+            "parentDeleteBehavior": "DeleteMeButKeepReferences",
+            "childDeleteBehavior": "DeleteMeButKeepReferences"
+          }
+        ]
+      },
+      "microflows": []
+    },
+    {
+      "name": "Atlas_Core",
+      "domainModel": {
+        "entities": [],
+        "associations": []
+      },
+      "microflows": []
+    },
+    {
+      "name": "WebActions",
+      "domainModel": {
+        "entities": [],
+        "associations": []
+      },
+      "microflows": []
+    },
+    {
+      "name": "Atlas_Web_Content",
+      "domainModel": {
+        "entities": [
+          {
+            "name": "LoginContext",
+            "generalization": "Atlas_Web_Content.LoginContext",
+            "attributes": [
+              {
+                "name": "Username",
+                "type": "String"
+              },
+              {
+                "name": "Password",
+                "type": "String"
+              },
+              {
+                "name": "RememberMe",
+                "type": "Boolean"
+              },
+              {
+                "name": "ValidationMessage",
+                "type": "String"
+              }
+            ],
+            "validationRules": [],
+            "eventHandlers": []
+          }
+        ],
+        "associations": []
+      },
+      "microflows": []
+    },
+    {
+      "name": "DataWidgets",
+      "domainModel": {
+        "entities": [],
+        "associations": []
+      },
+      "microflows": []
+    },
+    {
+      "name": "FeedbackModule",
+      "domainModel": {
+        "entities": [
+          {
+            "name": "ResponseHelper",
+            "generalization": "FeedbackModule.ResponseHelper",
+            "attributes": [
+              {
+                "name": "URL",
+                "type": "String"
+              }
+            ],
+            "validationRules": [],
+            "eventHandlers": []
+          },
+          {
+            "name": "Feedback",
+            "generalization": "FeedbackModule.Feedback",
+            "attributes": [
+              {
+                "name": "Subject",
+                "type": "String"
+              },
+              {
+                "name": "Description",
+                "type": "String"
+              },
+              {
+                "name": "SubmitterUUID",
+                "type": "String"
+              },
+              {
+                "name": "SubmitterEmail",
+                "type": "String"
+              },
+              {
+                "name": "SubmitterDisplayName",
+                "type": "String"
+              },
+              {
+                "name": "ImageB64",
+                "type": "String"
+              },
+              {
+                "name": "ActiveUserRoles",
+                "type": "String"
+              },
+              {
+                "name": "PageName",
+                "type": "String"
+              },
+              {
+                "name": "Browser",
+                "type": "String"
+              },
+              {
+                "name": "EnvironmentURL",
+                "type": "String"
+              },
+              {
+                "name": "ScreenshotName",
+                "type": "String"
+              },
+              {
+                "name": "AppID",
+                "type": "String"
+              },
+              {
+                "name": "Priority",
+                "type": "String"
+              },
+              {
+                "name": "ScreenWidth",
+                "type": "Integer"
+              },
+              {
+                "name": "ScreenHeight",
+                "type": "Integer"
+              },
+              {
+                "name": "_showEmail",
+                "type": "Boolean"
+              }
+            ],
+            "validationRules": [],
+            "eventHandlers": []
+          }
+        ],
+        "associations": []
+      },
+      "microflows": []
+    }
+  ]
+}

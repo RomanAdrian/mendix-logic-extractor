@@ -1,0 +1,23 @@
+{
+  "name": "mendix-logic-extractor",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "type": "module",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@types/when": "^2.4.41",
+    "mendixmodelsdk": "^4.107.0",
+    "mendixplatformsdk": "^5.2.0",
+    "when": "^3.7.8"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.3",
+    "typescript": "^5.9.3"
+  }
+}
