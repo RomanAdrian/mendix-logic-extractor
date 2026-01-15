@@ -29,7 +29,7 @@ async function main() {
         const model = await workingCopy.openModel();
         console.log("Mendix model opened. Extracting logic...");
 
-        // The final structured object that will be converted to JSON.
+        // json output
         const appLogic = {
             projectName: tempProjectName,
             extractedAt: new Date().toISOString(),
