@@ -1,20 +1,39 @@
 {
-  "projectName": "LearnNowLogicExtractionPro",
-  "extractedAt": "2026-01-09T20:08:02.289Z",
+  "projectName": "b35b5408-8fff-457e-9e37-bbc94f02ad4b",
+  "extractedAt": "2026-01-15T20:37:57.265Z",
   "projectSecurity": {
     "securityLevel": "CheckEverything",
+    "checkSecurity": true,
     "userRoles": [
       {
         "name": "Administrator",
-        "description": ""
+        "description": "",
+        "moduleRoles": [
+          "Administration.Administrator",
+          "Atlas_Core.Administrator",
+          "Unknown",
+          "MyFirstModule.Administrator"
+        ]
       },
       {
         "name": "Teacher",
-        "description": ""
+        "description": "",
+        "moduleRoles": [
+          "Administration.User",
+          "Atlas_Core.User",
+          "FeedbackModule.User",
+          "Unknown",
+          "MyFirstModule.Teacher"
+        ]
       },
       {
         "name": "Trainee",
-        "description": ""
+        "description": "",
+        "moduleRoles": [
+          "Atlas_Core.User",
+          "Unknown",
+          "MyFirstModule.Trainee"
+        ]
       }
     ]
   },
@@ -25,196 +44,607 @@
         "entities": [
           {
             "name": "Course",
-            "generalization": "MyFirstModule.Course",
+            "documentation": "",
+            "generalization": null,
             "attributes": [
               {
                 "name": "Title",
-                "type": "String"
+                "type": {
+                  "type": "String",
+                  "length": 200
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": ""
+                }
               },
               {
                 "name": "Description",
-                "type": "String"
+                "type": {
+                  "type": "String",
+                  "length": 200
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": ""
+                }
               },
               {
                 "name": "Price",
-                "type": "Decimal"
+                "type": {
+                  "type": "Decimal"
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": "0"
+                }
               },
               {
                 "name": "Duration",
-                "type": "Integer"
+                "type": {
+                  "type": "Integer"
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": "0"
+                }
               }
             ],
             "validationRules": [
               {
-                "attribute": "Title",
-                "type": "RequiredRuleInfo",
-                "message": "Title is required."
+                "attribute": "MyFirstModule.Course.Title",
+                "ruleType": "RequiredRuleInfo",
+                "errorMessage": {
+                  "translations": [
+                    {
+                      "languageCode": "en_US",
+                      "text": "Title is required."
+                    }
+                  ]
+                }
               },
               {
-                "attribute": "Title",
-                "type": "UniqueRuleInfo",
-                "message": "Title must be unique"
+                "attribute": "MyFirstModule.Course.Title",
+                "ruleType": "UniqueRuleInfo",
+                "errorMessage": {
+                  "translations": [
+                    {
+                      "languageCode": "en_US",
+                      "text": "Title must be unique"
+                    }
+                  ]
+                }
               },
               {
-                "attribute": "Duration",
-                "type": "RequiredRuleInfo",
-                "message": "This field is required"
+                "attribute": "MyFirstModule.Course.Duration",
+                "ruleType": "RequiredRuleInfo",
+                "errorMessage": {
+                  "translations": [
+                    {
+                      "languageCode": "en_US",
+                      "text": "This field is required"
+                    }
+                  ]
+                }
               },
               {
-                "attribute": "Duration",
-                "type": "RangeRuleInfo",
-                "message": "Duration must be between 1 and 10"
+                "attribute": "MyFirstModule.Course.Duration",
+                "ruleType": "RangeRuleInfo",
+                "errorMessage": {
+                  "translations": [
+                    {
+                      "languageCode": "en_US",
+                      "text": "Duration must be between 1 and 10"
+                    }
+                  ]
+                }
               },
               {
-                "attribute": "Price",
-                "type": "RequiredRuleInfo",
-                "message": "This field is required"
+                "attribute": "MyFirstModule.Course.Price",
+                "ruleType": "RequiredRuleInfo",
+                "errorMessage": {
+                  "translations": [
+                    {
+                      "languageCode": "en_US",
+                      "text": "This field is required"
+                    }
+                  ]
+                }
               },
               {
-                "attribute": "Price",
-                "type": "RangeRuleInfo",
-                "message": "No message specified"
+                "attribute": "MyFirstModule.Course.Price",
+                "ruleType": "RangeRuleInfo",
+                "errorMessage": {
+                  "translations": []
+                }
               },
               {
-                "attribute": "Description",
-                "type": "RequiredRuleInfo",
-                "message": "This field is required"
+                "attribute": "MyFirstModule.Course.Description",
+                "ruleType": "RequiredRuleInfo",
+                "errorMessage": {
+                  "translations": [
+                    {
+                      "languageCode": "en_US",
+                      "text": "This field is required"
+                    }
+                  ]
+                }
               }
             ],
-            "eventHandlers": []
+            "eventHandlers": [],
+            "indexes": [],
+            "accessRules": [
+              {
+                "documentation": "",
+                "defaultMemberAccessRights": "ReadWrite",
+                "allowCreate": true,
+                "allowDelete": true,
+                "moduleRoles": [
+                  "Administrator"
+                ],
+                "xPathConstraint": ""
+              },
+              {
+                "documentation": "",
+                "defaultMemberAccessRights": "None",
+                "allowCreate": false,
+                "allowDelete": false,
+                "moduleRoles": [
+                  "Teacher"
+                ],
+                "xPathConstraint": ""
+              },
+              {
+                "documentation": "",
+                "defaultMemberAccessRights": "None",
+                "allowCreate": false,
+                "allowDelete": false,
+                "moduleRoles": [
+                  "Trainee"
+                ],
+                "xPathConstraint": ""
+              }
+            ]
           },
           {
             "name": "Location",
-            "generalization": "MyFirstModule.Location",
+            "documentation": "",
+            "generalization": null,
             "attributes": [
               {
                 "name": "Name",
-                "type": "String"
+                "type": {
+                  "type": "String",
+                  "length": 200
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": ""
+                }
               },
               {
                 "name": "Address",
-                "type": "String"
+                "type": {
+                  "type": "String",
+                  "length": 200
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": ""
+                }
               }
             ],
             "validationRules": [
               {
-                "attribute": "Name",
-                "type": "RequiredRuleInfo",
-                "message": "Required"
+                "attribute": "MyFirstModule.Location.Name",
+                "ruleType": "RequiredRuleInfo",
+                "errorMessage": {
+                  "translations": [
+                    {
+                      "languageCode": "en_US",
+                      "text": "Required"
+                    }
+                  ]
+                }
               },
               {
-                "attribute": "Address",
-                "type": "RequiredRuleInfo",
-                "message": "Required"
+                "attribute": "MyFirstModule.Location.Address",
+                "ruleType": "RequiredRuleInfo",
+                "errorMessage": {
+                  "translations": [
+                    {
+                      "languageCode": "en_US",
+                      "text": "Required"
+                    }
+                  ]
+                }
               }
             ],
-            "eventHandlers": []
+            "eventHandlers": [],
+            "indexes": [],
+            "accessRules": [
+              {
+                "documentation": "",
+                "defaultMemberAccessRights": "ReadWrite",
+                "allowCreate": true,
+                "allowDelete": true,
+                "moduleRoles": [
+                  "Administrator"
+                ],
+                "xPathConstraint": ""
+              },
+              {
+                "documentation": "",
+                "defaultMemberAccessRights": "None",
+                "allowCreate": false,
+                "allowDelete": false,
+                "moduleRoles": [
+                  "Teacher"
+                ],
+                "xPathConstraint": ""
+              },
+              {
+                "documentation": "",
+                "defaultMemberAccessRights": "None",
+                "allowCreate": false,
+                "allowDelete": false,
+                "moduleRoles": [
+                  "Trainee"
+                ],
+                "xPathConstraint": ""
+              }
+            ]
           },
           {
             "name": "Teacher",
-            "generalization": "MyFirstModule.Teacher",
+            "documentation": "",
+            "generalization": null,
             "attributes": [
               {
                 "name": "Name",
-                "type": "String"
+                "type": {
+                  "type": "String",
+                  "length": 200
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": ""
+                }
               },
               {
                 "name": "Address",
-                "type": "String"
+                "type": {
+                  "type": "String",
+                  "length": 200
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": ""
+                }
               }
             ],
             "validationRules": [
               {
-                "attribute": "Name",
-                "type": "RequiredRuleInfo",
-                "message": "Required"
+                "attribute": "MyFirstModule.Teacher.Name",
+                "ruleType": "RequiredRuleInfo",
+                "errorMessage": {
+                  "translations": [
+                    {
+                      "languageCode": "en_US",
+                      "text": "Required"
+                    }
+                  ]
+                }
               },
               {
-                "attribute": "Address",
-                "type": "RequiredRuleInfo",
-                "message": "Required"
+                "attribute": "MyFirstModule.Teacher.Address",
+                "ruleType": "RequiredRuleInfo",
+                "errorMessage": {
+                  "translations": [
+                    {
+                      "languageCode": "en_US",
+                      "text": "Required"
+                    }
+                  ]
+                }
               }
             ],
-            "eventHandlers": []
+            "eventHandlers": [],
+            "indexes": [],
+            "accessRules": [
+              {
+                "documentation": "",
+                "defaultMemberAccessRights": "ReadWrite",
+                "allowCreate": true,
+                "allowDelete": true,
+                "moduleRoles": [
+                  "Administrator"
+                ],
+                "xPathConstraint": ""
+              },
+              {
+                "documentation": "",
+                "defaultMemberAccessRights": "None",
+                "allowCreate": false,
+                "allowDelete": false,
+                "moduleRoles": [
+                  "Teacher"
+                ],
+                "xPathConstraint": ""
+              },
+              {
+                "documentation": "",
+                "defaultMemberAccessRights": "None",
+                "allowCreate": false,
+                "allowDelete": false,
+                "moduleRoles": [
+                  "Trainee"
+                ],
+                "xPathConstraint": ""
+              }
+            ]
           },
           {
             "name": "Trainee",
-            "generalization": "MyFirstModule.Trainee",
+            "documentation": "",
+            "generalization": null,
             "attributes": [
               {
                 "name": "Name",
-                "type": "String"
+                "type": {
+                  "type": "String",
+                  "length": 200
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": ""
+                }
               },
               {
                 "name": "Address",
-                "type": "String"
+                "type": {
+                  "type": "String",
+                  "length": 200
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": ""
+                }
               },
               {
                 "name": "EmailAddress",
-                "type": "String"
+                "type": {
+                  "type": "String",
+                  "length": 200
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": ""
+                }
               }
             ],
             "validationRules": [
               {
-                "attribute": "Name",
-                "type": "RequiredRuleInfo",
-                "message": "Required"
+                "attribute": "MyFirstModule.Trainee.Name",
+                "ruleType": "RequiredRuleInfo",
+                "errorMessage": {
+                  "translations": [
+                    {
+                      "languageCode": "en_US",
+                      "text": "Required"
+                    }
+                  ]
+                }
               },
               {
-                "attribute": "Address",
-                "type": "RequiredRuleInfo",
-                "message": "Required"
+                "attribute": "MyFirstModule.Trainee.Address",
+                "ruleType": "RequiredRuleInfo",
+                "errorMessage": {
+                  "translations": [
+                    {
+                      "languageCode": "en_US",
+                      "text": "Required"
+                    }
+                  ]
+                }
               },
               {
-                "attribute": "EmailAddress",
-                "type": "RequiredRuleInfo",
-                "message": "Required"
+                "attribute": "MyFirstModule.Trainee.EmailAddress",
+                "ruleType": "RequiredRuleInfo",
+                "errorMessage": {
+                  "translations": [
+                    {
+                      "languageCode": "en_US",
+                      "text": "Required"
+                    }
+                  ]
+                }
               }
             ],
-            "eventHandlers": []
+            "eventHandlers": [],
+            "indexes": [],
+            "accessRules": [
+              {
+                "documentation": "",
+                "defaultMemberAccessRights": "ReadWrite",
+                "allowCreate": true,
+                "allowDelete": true,
+                "moduleRoles": [
+                  "Administrator"
+                ],
+                "xPathConstraint": ""
+              },
+              {
+                "documentation": "",
+                "defaultMemberAccessRights": "None",
+                "allowCreate": false,
+                "allowDelete": false,
+                "moduleRoles": [
+                  "Teacher"
+                ],
+                "xPathConstraint": ""
+              }
+            ]
           },
           {
             "name": "TrainingEvent",
-            "generalization": "MyFirstModule.TrainingEvent",
+            "documentation": "",
+            "generalization": null,
             "attributes": [
               {
                 "name": "StartDate",
-                "type": "DateTime"
+                "type": {
+                  "type": "DateTime",
+                  "localized": true
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": ""
+                }
               },
               {
                 "name": "EndDate",
-                "type": "DateTime"
+                "type": {
+                  "type": "DateTime",
+                  "localized": true
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": ""
+                }
               },
               {
                 "name": "TotalNumberOfRegistrations",
-                "type": "Integer"
+                "type": {
+                  "type": "Integer"
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": "0"
+                }
               }
             ],
             "validationRules": [],
-            "eventHandlers": []
+            "eventHandlers": [],
+            "indexes": [],
+            "accessRules": [
+              {
+                "documentation": "",
+                "defaultMemberAccessRights": "ReadWrite",
+                "allowCreate": true,
+                "allowDelete": true,
+                "moduleRoles": [
+                  "Administrator"
+                ],
+                "xPathConstraint": ""
+              },
+              {
+                "documentation": "",
+                "defaultMemberAccessRights": "None",
+                "allowCreate": false,
+                "allowDelete": false,
+                "moduleRoles": [
+                  "Teacher"
+                ],
+                "xPathConstraint": ""
+              },
+              {
+                "documentation": "",
+                "defaultMemberAccessRights": "None",
+                "allowCreate": false,
+                "allowDelete": false,
+                "moduleRoles": [
+                  "Trainee"
+                ],
+                "xPathConstraint": ""
+              }
+            ]
           },
           {
             "name": "Registration",
-            "generalization": "MyFirstModule.Registration",
+            "documentation": "",
+            "generalization": null,
             "attributes": [
               {
                 "name": "Number",
-                "type": "AutoNumber"
+                "type": {
+                  "type": "AutoNumber"
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": "1"
+                }
               },
               {
                 "name": "Date",
-                "type": "DateTime"
+                "type": {
+                  "type": "DateTime",
+                  "localized": true
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": ""
+                }
               },
               {
                 "name": "Attend",
-                "type": "Boolean"
+                "type": {
+                  "type": "Boolean"
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": "false"
+                }
               }
             ],
             "validationRules": [],
             "eventHandlers": [
               {
-                "event": "Type",
-                "microflow": "MyFirstModule.ADE_Registration_CalculateTotalNumberOfRegistrations"
+                "moment": "After",
+                "event": "Delete",
+                "microflow": "MyFirstModule.ADE_Registration_CalculateTotalNumberOfRegistrations",
+                "passEventObject": true,
+                "raiseErrorOnFalse": true
+              }
+            ],
+            "indexes": [],
+            "accessRules": [
+              {
+                "documentation": "",
+                "defaultMemberAccessRights": "ReadWrite",
+                "allowCreate": true,
+                "allowDelete": true,
+                "moduleRoles": [
+                  "Administrator"
+                ],
+                "xPathConstraint": ""
+              },
+              {
+                "documentation": "",
+                "defaultMemberAccessRights": "None",
+                "allowCreate": false,
+                "allowDelete": false,
+                "moduleRoles": [
+                  "Teacher"
+                ],
+                "xPathConstraint": ""
               }
             ]
           }
@@ -222,65 +652,80 @@
         "associations": [
           {
             "name": "TrainingEvent_Course",
+            "documentation": "",
             "parent": "TrainingEvent",
             "child": "Course",
-            "type": "Type",
+            "type": "Reference",
             "owner": "Default",
-            "parentDeleteBehavior": "DeleteMeButKeepReferences",
-            "childDeleteBehavior": "DeleteMeButKeepReferences"
+            "deleteBehavior": {
+              "parentDelete": "DeleteMeButKeepReferences",
+              "childDelete": "DeleteMeButKeepReferences"
+            }
           },
           {
             "name": "TrainingEvent_Location",
+            "documentation": "",
             "parent": "TrainingEvent",
             "child": "Location",
-            "type": "Type",
+            "type": "Reference",
             "owner": "Default",
-            "parentDeleteBehavior": "DeleteMeButKeepReferences",
-            "childDeleteBehavior": "DeleteMeButKeepReferences"
+            "deleteBehavior": {
+              "parentDelete": "DeleteMeButKeepReferences",
+              "childDelete": "DeleteMeButKeepReferences"
+            }
           },
           {
             "name": "TrainingEvent_Teacher",
+            "documentation": "",
             "parent": "TrainingEvent",
             "child": "Teacher",
-            "type": "Type",
+            "type": "Reference",
             "owner": "Default",
-            "parentDeleteBehavior": "DeleteMeButKeepReferences",
-            "childDeleteBehavior": "DeleteMeButKeepReferences"
+            "deleteBehavior": {
+              "parentDelete": "DeleteMeButKeepReferences",
+              "childDelete": "DeleteMeButKeepReferences"
+            }
           },
           {
             "name": "Registration_TrainingEvent",
+            "documentation": "",
             "parent": "Registration",
             "child": "TrainingEvent",
-            "type": "Type",
+            "type": "Reference",
             "owner": "Default",
-            "parentDeleteBehavior": "DeleteMeButKeepReferences",
-            "childDeleteBehavior": "DeleteMeIfNoReferences"
+            "deleteBehavior": {
+              "parentDelete": "DeleteMeButKeepReferences",
+              "childDelete": "DeleteMeIfNoReferences"
+            }
           },
           {
             "name": "Registration_Trainee",
+            "documentation": "",
             "parent": "Registration",
             "child": "Trainee",
-            "type": "Type",
+            "type": "Reference",
             "owner": "Default",
-            "parentDeleteBehavior": "DeleteMeButKeepReferences",
-            "childDeleteBehavior": "DeleteMeAndReferences"
+            "deleteBehavior": {
+              "parentDelete": "DeleteMeButKeepReferences",
+              "childDelete": "DeleteMeAndReferences"
+            }
           }
         ]
       },
-      "microflows": [
-        {
-          "name": "MyFirstLogic",
-          "returnType": "[object Object]",
-          "activities": [
-            {
-              "type": "StartEvent"
-            },
-            {
-              "type": "EndEvent"
-            }
-          ]
-        }
-      ]
+      "microflows": [],
+      "security": {
+        "moduleRoles": [
+          {
+            "name": "Teacher"
+          },
+          {
+            "name": "Administrator"
+          },
+          {
+            "name": "Trainee"
+          }
+        ]
+      }
     },
     {
       "name": "NanoflowCommons",
@@ -288,64 +733,179 @@
         "entities": [
           {
             "name": "Geolocation",
-            "generalization": "NanoflowCommons.Geolocation",
+            "documentation": "",
+            "generalization": null,
             "attributes": [
               {
                 "name": "Timestamp",
-                "type": "DateTime"
+                "type": {
+                  "type": "DateTime",
+                  "localized": true
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": ""
+                }
               },
               {
                 "name": "Latitude",
-                "type": "String"
+                "type": {
+                  "type": "String",
+                  "length": 200
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": ""
+                }
               },
               {
                 "name": "Longitude",
-                "type": "String"
+                "type": {
+                  "type": "String",
+                  "length": 200
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": ""
+                }
               },
               {
                 "name": "Altitude",
-                "type": "String"
+                "type": {
+                  "type": "String",
+                  "length": 200
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": ""
+                }
               },
               {
                 "name": "Accuracy",
-                "type": "String"
+                "type": {
+                  "type": "String",
+                  "length": 200
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": ""
+                }
               },
               {
                 "name": "AltitudeAccuracy",
-                "type": "String"
+                "type": {
+                  "type": "String",
+                  "length": 200
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": ""
+                }
               },
               {
                 "name": "Heading",
-                "type": "String"
+                "type": {
+                  "type": "String",
+                  "length": 200
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": ""
+                }
               },
               {
                 "name": "Speed",
-                "type": "String"
+                "type": {
+                  "type": "String",
+                  "length": 200
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": ""
+                }
               }
             ],
             "validationRules": [],
-            "eventHandlers": []
+            "eventHandlers": [],
+            "indexes": [],
+            "accessRules": [
+              {
+                "documentation": "",
+                "defaultMemberAccessRights": "ReadWrite",
+                "allowCreate": true,
+                "allowDelete": true,
+                "moduleRoles": [
+                  "User"
+                ],
+                "xPathConstraint": ""
+              }
+            ]
           },
           {
             "name": "Position",
-            "generalization": "NanoflowCommons.Position",
+            "documentation": "",
+            "generalization": null,
             "attributes": [
               {
                 "name": "Latitude",
-                "type": "String"
+                "type": {
+                  "type": "String",
+                  "length": 200
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": ""
+                }
               },
               {
                 "name": "Longitude",
-                "type": "String"
+                "type": {
+                  "type": "String",
+                  "length": 200
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": ""
+                }
               }
             ],
             "validationRules": [],
-            "eventHandlers": []
+            "eventHandlers": [],
+            "indexes": [],
+            "accessRules": [
+              {
+                "documentation": "",
+                "defaultMemberAccessRights": "ReadWrite",
+                "allowCreate": true,
+                "allowDelete": true,
+                "moduleRoles": [
+                  "User"
+                ],
+                "xPathConstraint": ""
+              }
+            ]
           }
         ],
         "associations": []
       },
-      "microflows": []
+      "microflows": [],
+      "security": {
+        "moduleRoles": [
+          {
+            "name": "User"
+          }
+        ]
+      }
     },
     {
       "name": "Administration",
@@ -353,58 +913,167 @@
         "entities": [
           {
             "name": "Account",
-            "generalization": "Administration.Account",
+            "documentation": "",
+            "generalization": "System.User",
             "attributes": [
               {
                 "name": "FullName",
-                "type": "String"
+                "type": {
+                  "type": "String",
+                  "length": 200
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": ""
+                }
               },
               {
                 "name": "Email",
-                "type": "String"
+                "type": {
+                  "type": "String",
+                  "length": 200
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": ""
+                }
               },
               {
                 "name": "IsLocalUser",
-                "type": "Boolean"
+                "type": {
+                  "type": "Boolean"
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": "true"
+                }
               }
             ],
             "validationRules": [],
-            "eventHandlers": []
+            "eventHandlers": [],
+            "indexes": [],
+            "accessRules": [
+              {
+                "documentation": "",
+                "defaultMemberAccessRights": "None",
+                "allowCreate": true,
+                "allowDelete": true,
+                "moduleRoles": [
+                  "Administrator"
+                ],
+                "xPathConstraint": ""
+              },
+              {
+                "documentation": "",
+                "defaultMemberAccessRights": "ReadOnly",
+                "allowCreate": false,
+                "allowDelete": false,
+                "moduleRoles": [
+                  "User"
+                ],
+                "xPathConstraint": ""
+              },
+              {
+                "documentation": "",
+                "defaultMemberAccessRights": "None",
+                "allowCreate": false,
+                "allowDelete": false,
+                "moduleRoles": [
+                  "User"
+                ],
+                "xPathConstraint": "[id='[%CurrentUser%]']"
+              }
+            ]
           },
           {
             "name": "AccountPasswordData",
-            "generalization": "Administration.AccountPasswordData",
+            "documentation": "",
+            "generalization": null,
             "attributes": [
               {
                 "name": "OldPassword",
-                "type": "String"
+                "type": {
+                  "type": "String",
+                  "length": 200
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": ""
+                }
               },
               {
                 "name": "NewPassword",
-                "type": "String"
+                "type": {
+                  "type": "String",
+                  "length": 200
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": ""
+                }
               },
               {
                 "name": "ConfirmPassword",
-                "type": "String"
+                "type": {
+                  "type": "String",
+                  "length": 200
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": ""
+                }
               }
             ],
             "validationRules": [],
-            "eventHandlers": []
+            "eventHandlers": [],
+            "indexes": [],
+            "accessRules": [
+              {
+                "documentation": "",
+                "defaultMemberAccessRights": "ReadWrite",
+                "allowCreate": false,
+                "allowDelete": false,
+                "moduleRoles": [
+                  "Administrator",
+                  "User"
+                ],
+                "xPathConstraint": ""
+              }
+            ]
           }
         ],
         "associations": [
           {
             "name": "AccountPasswordData_Account",
+            "documentation": "",
             "parent": "AccountPasswordData",
             "child": "Account",
-            "type": "Type",
+            "type": "Reference",
             "owner": "Default",
-            "parentDeleteBehavior": "DeleteMeButKeepReferences",
-            "childDeleteBehavior": "DeleteMeButKeepReferences"
+            "deleteBehavior": {
+              "parentDelete": "DeleteMeButKeepReferences",
+              "childDelete": "DeleteMeButKeepReferences"
+            }
           }
         ]
       },
-      "microflows": []
+      "microflows": [],
+      "security": {
+        "moduleRoles": [
+          {
+            "name": "Administrator"
+          },
+          {
+            "name": "User"
+          }
+        ]
+      }
     },
     {
       "name": "Atlas_Core",
@@ -412,7 +1081,17 @@
         "entities": [],
         "associations": []
       },
-      "microflows": []
+      "microflows": [],
+      "security": {
+        "moduleRoles": [
+          {
+            "name": "Administrator"
+          },
+          {
+            "name": "User"
+          }
+        ]
+      }
     },
     {
       "name": "WebActions",
@@ -420,7 +1099,10 @@
         "entities": [],
         "associations": []
       },
-      "microflows": []
+      "microflows": [],
+      "security": {
+        "moduleRoles": []
+      }
     },
     {
       "name": "Atlas_Web_Content",
@@ -428,32 +1110,92 @@
         "entities": [
           {
             "name": "LoginContext",
-            "generalization": "Atlas_Web_Content.LoginContext",
+            "documentation": "",
+            "generalization": null,
             "attributes": [
               {
                 "name": "Username",
-                "type": "String"
+                "type": {
+                  "type": "String",
+                  "length": 200
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": ""
+                }
               },
               {
                 "name": "Password",
-                "type": "String"
+                "type": {
+                  "type": "String",
+                  "length": 200
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": ""
+                }
               },
               {
                 "name": "RememberMe",
-                "type": "Boolean"
+                "type": {
+                  "type": "Boolean"
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": "false"
+                }
               },
               {
                 "name": "ValidationMessage",
-                "type": "String"
+                "type": {
+                  "type": "String",
+                  "length": 200
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": ""
+                }
               }
             ],
             "validationRules": [],
-            "eventHandlers": []
+            "eventHandlers": [],
+            "indexes": [],
+            "accessRules": [
+              {
+                "documentation": "",
+                "defaultMemberAccessRights": "None",
+                "allowCreate": true,
+                "allowDelete": true,
+                "moduleRoles": [
+                  "Administrator",
+                  "Anonymous",
+                  "User"
+                ],
+                "xPathConstraint": ""
+              }
+            ]
           }
         ],
         "associations": []
       },
-      "microflows": []
+      "microflows": [],
+      "security": {
+        "moduleRoles": [
+          {
+            "name": "Anonymous"
+          },
+          {
+            "name": "Administrator"
+          },
+          {
+            "name": "User"
+          }
+        ]
+      }
     },
     {
       "name": "DataWidgets",
@@ -461,7 +1203,14 @@
         "entities": [],
         "associations": []
       },
-      "microflows": []
+      "microflows": [],
+      "security": {
+        "moduleRoles": [
+          {
+            "name": "User"
+          }
+        ]
+      }
     },
     {
       "name": "FeedbackModule",
@@ -469,92 +1218,260 @@
         "entities": [
           {
             "name": "ResponseHelper",
-            "generalization": "FeedbackModule.ResponseHelper",
+            "documentation": "",
+            "generalization": null,
             "attributes": [
               {
                 "name": "URL",
-                "type": "String"
+                "type": {
+                  "type": "String",
+                  "length": 0
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": ""
+                }
               }
             ],
             "validationRules": [],
-            "eventHandlers": []
+            "eventHandlers": [],
+            "indexes": [],
+            "accessRules": [
+              {
+                "documentation": "",
+                "defaultMemberAccessRights": "None",
+                "allowCreate": false,
+                "allowDelete": false,
+                "moduleRoles": [
+                  "User"
+                ],
+                "xPathConstraint": ""
+              }
+            ]
           },
           {
             "name": "Feedback",
-            "generalization": "FeedbackModule.Feedback",
+            "documentation": "",
+            "generalization": null,
             "attributes": [
               {
                 "name": "Subject",
-                "type": "String"
+                "type": {
+                  "type": "String",
+                  "length": 200
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": ""
+                }
               },
               {
                 "name": "Description",
-                "type": "String"
+                "type": {
+                  "type": "String",
+                  "length": 0
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": ""
+                }
               },
               {
                 "name": "SubmitterUUID",
-                "type": "String"
+                "type": {
+                  "type": "String",
+                  "length": 200
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": ""
+                }
               },
               {
                 "name": "SubmitterEmail",
-                "type": "String"
+                "type": {
+                  "type": "String",
+                  "length": 200
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": ""
+                }
               },
               {
                 "name": "SubmitterDisplayName",
-                "type": "String"
+                "type": {
+                  "type": "String",
+                  "length": 200
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": ""
+                }
               },
               {
                 "name": "ImageB64",
-                "type": "String"
+                "type": {
+                  "type": "String",
+                  "length": 0
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": ""
+                }
               },
               {
                 "name": "ActiveUserRoles",
-                "type": "String"
+                "type": {
+                  "type": "String",
+                  "length": 1000
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": ""
+                }
               },
               {
                 "name": "PageName",
-                "type": "String"
+                "type": {
+                  "type": "String",
+                  "length": 0
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": ""
+                }
               },
               {
                 "name": "Browser",
-                "type": "String"
+                "type": {
+                  "type": "String",
+                  "length": 400
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": ""
+                }
               },
               {
                 "name": "EnvironmentURL",
-                "type": "String"
+                "type": {
+                  "type": "String",
+                  "length": 400
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": ""
+                }
               },
               {
                 "name": "ScreenshotName",
-                "type": "String"
+                "type": {
+                  "type": "String",
+                  "length": 200
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": ""
+                }
               },
               {
                 "name": "AppID",
-                "type": "String"
+                "type": {
+                  "type": "String",
+                  "length": 200
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": ""
+                }
               },
               {
                 "name": "Priority",
-                "type": "String"
+                "type": {
+                  "type": "String",
+                  "length": 200
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": ""
+                }
               },
               {
                 "name": "ScreenWidth",
-                "type": "Integer"
+                "type": {
+                  "type": "Integer"
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": "0"
+                }
               },
               {
                 "name": "ScreenHeight",
-                "type": "Integer"
+                "type": {
+                  "type": "Integer"
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": "0"
+                }
               },
               {
                 "name": "_showEmail",
-                "type": "Boolean"
+                "type": {
+                  "type": "Boolean"
+                },
+                "documentation": "",
+                "value": {
+                  "type": "StoredValue",
+                  "defaultValue": "false"
+                }
               }
             ],
             "validationRules": [],
-            "eventHandlers": []
+            "eventHandlers": [],
+            "indexes": [],
+            "accessRules": [
+              {
+                "documentation": "",
+                "defaultMemberAccessRights": "ReadWrite",
+                "allowCreate": true,
+                "allowDelete": true,
+                "moduleRoles": [
+                  "User"
+                ],
+                "xPathConstraint": ""
+              }
+            ]
           }
         ],
         "associations": []
       },
-      "microflows": []
+      "microflows": [],
+      "security": {
+        "moduleRoles": [
+          {
+            "name": "User"
+          }
+        ]
+      }
     }
   ]
 }
