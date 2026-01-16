@@ -685,26 +685,32 @@ function extractSplitCondition(condition: microflows.SplitCondition | null): any
     return { type: condition.constructor.name };
 }
 
-/**
- * Extract sequence flows (connections between activities)
- */
 function extractFlows(microflow: microflows.Microflow): any[] {
     return microflow.flows.map(flow => ({
         origin: flow.origin?.id || null,
         destination: flow.destination?.id || null,
         originConnectionIndex: flow.originConnectionIndex,
         destinationConnectionIndex: flow.destinationConnectionIndex,
-        caseValue: flow instanceof microflows.SequenceFlow ?
-            extractCaseValue(flow.caseValue) : null
+        // Use caseValues (plural) instead of caseValue - changed in Mendix 10.15.0
+        caseValues: flow instanceof microflows.SequenceFlow ?
+            extractCaseValues(flow.caseValues) : null
     }));
 }
 
 /**
- * Extract case value (for conditional flows)
+ * Extract case values (for conditional flows)
+ * Note: Since Mendix 10.15.0, caseValue was replaced with caseValues (a list)
  */
-function extractCaseValue(caseValue: microflows.CaseValue | null): any {
-    if (!caseValue) return null;
+function extractCaseValues(caseValues: microflows.CaseValue[]): any[] {
+    if (!caseValues || caseValues.length === 0) return [];
 
+    return caseValues.map(caseValue => extractSingleCaseValue(caseValue));
+}
+
+/**
+ * Extract a single case value
+ */
+function extractSingleCaseValue(caseValue: microflows.CaseValue): any {
     if (caseValue instanceof microflows.EnumerationCase) {
         return {
             type: "Enumeration",
